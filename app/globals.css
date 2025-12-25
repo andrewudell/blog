@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Merriweather:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --notebook-paper: #FFFEF0;
+  --notebook-line: #D1E5F4;
+  --notebook-margin: #E74C3C;
+  --notebook-text: #2C3E50;
+}
+
+body {
+  font-family: 'Merriweather', Georgia, serif;
+  color: var(--notebook-text);
+  margin: 0;
+  padding: 0;
+}
+
+.handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+/* Notebook page styling */
+.notebook-page {
+  position: relative;
+  min-height: 100vh;
+  background:
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      var(--notebook-line) 31px,
+      var(--notebook-line) 32px
+    ),
+    var(--notebook-paper);
+  background-attachment: local;
+}
+
+/* Margin line */
+.notebook-page::before {
+  content: '';
+  position: fixed;
+  left: 60px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--notebook-margin);
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .notebook-page::before {
+    left: 30px;
+  }
+}
+
+.notebook-content {
+  position: relative;
+  z-index: 2;
+  padding-left: 80px;
+  padding-right: 20px;
+}
+
+@media (max-width: 640px) {
+  .notebook-content {
+    padding-left: 50px;
+  }
+}
+
+/* Prose / Markdown content styling */
+.prose {
+  max-width: 65ch;
+  line-height: 32px; /* Match notebook line spacing */
+}
+
+.prose h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.prose h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.prose h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose a {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #2980b9;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose ul, .prose ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+}
+
+.prose pre {
+  background: rgba(0, 0, 0, 0.05);
+  border-left: 3px solid var(--notebook-margin);
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--notebook-margin);
+  padding-left: 1rem;
+  font-style: italic;
+  color: #555;
+  margin: 1.5rem 0;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.prose th, .prose td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.prose th {
+  background: rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+}
+
+.prose hr {
+  border: none;
+  border-top: 2px solid var(--notebook-line);
+  margin: 2rem 0;
+}

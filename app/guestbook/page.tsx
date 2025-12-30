@@ -4,8 +4,16 @@ import { useState, useEffect } from 'react';
 import HyperCardNav from '@/components/HyperCardNav';
 import HyperCardField from '@/components/HyperCardField';
 
+interface GuestbookEntry {
+  id: number;
+  name: string;
+  message: string;
+  date: string;
+  avatar?: string;
+}
+
 export default function GuestbookPage() {
-  const [entries, setEntries] = useState<any[]>([]);
+  const [entries, setEntries] = useState<GuestbookEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [name, setName] = useState('');
@@ -75,7 +83,7 @@ export default function GuestbookPage() {
         <HyperCardField className="mb-6">
           <h2 className="text-lg font-bold mb-2">Sign My Guestbook!</h2>
           <p className="text-sm mb-4 leading-relaxed">
-            Leave a message in my guestbook. It's like the old days of the web!
+            Leave a message in my guestbook. It&apos;s like the old days of the web!
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">

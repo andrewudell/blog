@@ -20,7 +20,7 @@ export default function AboutPage() {
             Past: Investing at Thrive Capital, Product and Growth at Dropbox, and Computational Social Science at Williams. 
           </p>
           <p className="leading-relaxed">
-            This blog is primarily motivated by having fun playing with Claude/LLMs, but I do want to start writing more about everything I've learned running a startup!
+            This blog is primarily motivated by having fun playing with Claude/LLMs, but I do want to start writing more about everything I&apos;ve learned running a startup!
           </p>
         </HyperCardField>
       </main>

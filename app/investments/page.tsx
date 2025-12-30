@@ -24,7 +24,7 @@ export default function InvestmentsPage() {
 
         <HyperCardField className="mb-6">
           <p className="leading-relaxed text-sm">
-            Companies I've invested in and advise.
+            Companies I&apos;ve invested in and advise.
           </p>
         </HyperCardField>
 

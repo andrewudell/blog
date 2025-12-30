@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import HyperCardNav from '@/components/HyperCardNav';
 import HyperCardField from '@/components/HyperCardField';
-import HyperCardButton from '@/components/HyperCardButton';
 
 export default function GuestbookPage() {
   const [entries, setEntries] = useState<any[]>([]);

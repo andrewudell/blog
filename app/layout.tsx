@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import NotebookContainer from "@/components/NotebookContainer";
+import HyperCardStack from "@/components/HyperCardStack";
 
 export const metadata: Metadata = {
-  title: "My Notebook Blog",
-  description: "A personal blog styled like a composition notebook",
+  title: "Andrew Udell",
+  description: "Thoughts, ideas, and things I'm learning",
 };
 
 export default function RootLayout({
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NotebookContainer>
+        <HyperCardStack>
           {children}
-        </NotebookContainer>
+        </HyperCardStack>
       </body>
     </html>
   );

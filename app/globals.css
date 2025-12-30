@@ -1,103 +1,248 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Merriweather:wght@300;400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --notebook-paper: #FFFEF0;
-  --notebook-line: #D1E5F4;
-  --notebook-margin: #E74C3C;
-  --notebook-text: #2C3E50;
+  /* HyperCard Color Palette */
+  --hc-desktop: #C0C0C0;
+  --hc-card-bg: #FFFFFF;
+  --hc-field-bg: #FAFAFA;
+  --hc-button-bg: #DDDDDD;
+  --hc-border: #000000;
+  --hc-border-gray: #888888;
+  --hc-border-light: #CCCCCC;
+  --hc-shadow: rgba(0, 0, 0, 0.35);
+  --hc-shadow-strong: rgba(0, 0, 0, 0.5);
+  --hc-highlight: #FFFFFF;
+  --hc-lowlight: #999999;
+  --hc-text: #000000;
+  --hc-text-secondary: #666666;
+  --hc-accent: #000000;
+  --hc-titlebar-bg: #D4D4D4;
+}
+
+/* Diagonal line pattern - authentic HyperCard background */
+.hypercard-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.03) 1px,
+    rgba(0, 0, 0, 0.03) 2px
+  );
 }
 
 body {
-  font-family: 'Merriweather', Georgia, serif;
-  color: var(--notebook-text);
+  /* Use Courier/Monaco for more authentic bitmap look */
+  font-family: 'Courier New', Courier, Monaco, monospace;
+  color: var(--hc-text);
   margin: 0;
   padding: 0;
+  background-color: var(--hc-desktop);
+  /* Disable font smoothing for bitmap appearance */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
+  /* Slightly bolder for better readability */
+  font-weight: 500;
 }
 
-.handwriting {
-  font-family: 'Caveat', cursive;
+/* HyperCard Utility Classes */
+.hypercard-card {
+  border: 3px solid var(--hc-border);
+  box-shadow:
+    4px 4px 0px #000000,
+    5px 5px 0px rgba(0, 0, 0, 0.5);
+  background: var(--hc-card-bg);
+  border-radius: 0px;
 }
 
-/* Notebook page styling */
-.notebook-page {
+/* Window chrome styles */
+.hypercard-window {
+  border: 4px solid var(--hc-border);
+  background: var(--hc-card-bg);
+  box-shadow:
+    5px 5px 0px #000000,
+    6px 6px 0px rgba(0, 0, 0, 0.6);
+}
+
+.hypercard-titlebar {
+  background: var(--hc-titlebar-bg);
+  border-bottom: 2px solid var(--hc-border);
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
   position: relative;
-  min-height: 100vh;
-  background:
-    repeating-linear-gradient(
-      transparent,
-      transparent 31px,
-      var(--notebook-line) 31px,
-      var(--notebook-line) 32px
-    ),
-    var(--notebook-paper);
-  background-attachment: local;
+  /* Diagonal line pattern like authentic HyperCard */
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.04) 1px,
+    rgba(0, 0, 0, 0.04) 2px
+  );
 }
 
-/* Margin line */
-.notebook-page::before {
-  content: '';
-  position: fixed;
-  left: 60px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--notebook-margin);
-  z-index: 1;
+.hypercard-window-controls {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 4px;
 }
 
-@media (max-width: 640px) {
-  .notebook-page::before {
-    left: 30px;
-  }
+.hypercard-window-control {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--hc-border);
+  background: var(--hc-button-bg);
+  box-shadow:
+    inset 1px 1px 0px #FFFFFF,
+    inset -1px -1px 0px #888888;
 }
 
-.notebook-content {
-  position: relative;
-  z-index: 2;
-  padding-left: 80px;
-  padding-right: 20px;
+/* Bottom navigation bar */
+.hypercard-navbar {
+  border-top: 2px solid var(--hc-border);
+  background: var(--hc-desktop);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.03) 1px,
+    rgba(0, 0, 0, 0.03) 2px
+  );
 }
 
-@media (max-width: 640px) {
-  .notebook-content {
-    padding-left: 50px;
-  }
+.hypercard-nav-arrow {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--hc-border);
+  background: var(--hc-button-bg);
+  box-shadow:
+    inset 2px 2px 0px #FFFFFF,
+    inset -2px -2px 0px #888888,
+    1px 1px 0px #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.hypercard-nav-tab {
+  padding: 6px 16px;
+  border: 2px solid var(--hc-border);
+  background: var(--hc-button-bg);
+  box-shadow:
+    inset 2px 2px 0px #FFFFFF,
+    inset -2px -2px 0px #888888;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hypercard-nav-tab.active {
+  background: #333333;
+  color: #FFFFFF;
+  box-shadow:
+    inset 2px 2px 0px #000000,
+    inset -1px -1px 0px #555555;
+}
+
+.hypercard-button {
+  border: 3px solid var(--hc-border);
+  border-radius: 8px;
+  background: var(--hc-button-bg);
+  /* Much chunkier 3D bevel effect */
+  box-shadow:
+    inset 3px 3px 0px #FFFFFF,
+    inset 4px 4px 0px #F0F0F0,
+    inset -3px -3px 0px #888888,
+    inset -4px -4px 0px #666666,
+    2px 2px 0px #000000,
+    3px 3px 0px rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  font-weight: 700;
+  color: var(--hc-text);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.hypercard-button:hover {
+  background: #D0D0D0;
+}
+
+.hypercard-button:active {
+  /* Pressed/inset appearance */
+  box-shadow:
+    inset 3px 3px 0px #666666,
+    inset 4px 4px 0px #888888,
+    inset -1px -1px 0px #F0F0F0;
+  transform: translate(1px, 1px);
+}
+
+.hypercard-field {
+  border: 2px solid var(--hc-border-gray);
+  background: var(--hc-field-bg);
+  /* Deeper inset effect */
+  box-shadow:
+    inset 2px 2px 0px #888888,
+    inset 3px 3px 0px #999999,
+    inset -1px -1px 0px #FFFFFF;
+  border-radius: 0px;
+  padding: 16px;
+}
+
+.hypercard-shadow {
+  box-shadow: 4px 4px 0px var(--hc-shadow);
 }
 
 /* Prose / Markdown content styling */
 .prose {
   max-width: 65ch;
-  line-height: 32px; /* Match notebook line spacing */
+  line-height: 1.5;
+  color: var(--hc-text);
 }
 
 .prose h1 {
-  font-family: 'Caveat', cursive;
-  font-size: 3rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
   line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--hc-text);
 }
 
 .prose h2 {
-  font-family: 'Caveat', cursive;
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-
-.prose h3 {
-  font-family: 'Caveat', cursive;
   font-size: 1.75rem;
   font-weight: 700;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--hc-text);
+}
+
+.prose h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0;
+  color: var(--hc-text);
 }
 
 .prose p {
@@ -105,12 +250,13 @@ body {
 }
 
 .prose a {
-  color: #3498db;
+  color: var(--hc-text);
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .prose a:hover {
-  color: #2980b9;
+  color: var(--hc-text-secondary);
 }
 
 .prose strong {
@@ -131,62 +277,68 @@ body {
 }
 
 .prose code {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--hc-field-bg);
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-size: 0.9em;
-  font-family: 'Courier New', monospace;
+  font-family: Monaco, 'Courier New', monospace;
+  color: var(--hc-text);
+  border: 1px solid var(--hc-border-light);
 }
 
 .prose pre {
-  background: rgba(0, 0, 0, 0.05);
-  border-left: 3px solid var(--notebook-margin);
+  background: var(--hc-field-bg);
+  border: 2px solid var(--hc-border);
   padding: 1em;
   overflow-x: auto;
   margin: 1.5rem 0;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .prose pre code {
   background: none;
   padding: 0;
   font-size: 0.875rem;
+  color: var(--hc-text);
+  border: none;
 }
 
 .prose blockquote {
-  border-left: 4px solid var(--notebook-margin);
+  border-left: 3px solid var(--hc-border);
   padding-left: 1rem;
   font-style: italic;
-  color: #555;
+  color: var(--hc-text-secondary);
   margin: 1.5rem 0;
 }
 
 .prose img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: 3px;
   margin: 1.5rem 0;
+  border: 1px solid var(--hc-border-gray);
 }
 
 .prose table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
+  border: 2px solid var(--hc-border);
 }
 
 .prose th, .prose td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--hc-border);
   padding: 0.5rem;
   text-align: left;
 }
 
 .prose th {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--hc-button-bg);
   font-weight: 700;
 }
 
 .prose hr {
   border: none;
-  border-top: 2px solid var(--notebook-line);
+  border-top: 2px solid var(--hc-border);
   margin: 2rem 0;
 }

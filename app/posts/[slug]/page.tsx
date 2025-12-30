@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import { markdownToHtml } from '@/lib/markdown';
 import PostContent from '@/components/PostContent';
-import Navigation from '@/components/Navigation';
+import HyperCardNav from '@/components/HyperCardNav';
 import { format } from 'date-fns';
 
 export async function generateStaticParams() {
@@ -27,7 +27,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | My Notebook Blog`,
+    title: `${post.title} | Andrew Udell`,
     description: post.excerpt,
   };
 }
@@ -49,15 +49,15 @@ export default async function PostPage({
 
   return (
     <>
-      <Navigation />
-      <article className="max-w-4xl mx-auto py-12">
-        <header className="mb-12">
-          <h1 className="text-6xl font-bold mb-4 handwriting">
+      <HyperCardNav />
+      <article>
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold mb-2">
             {post.title}
           </h1>
-          <time className="text-gray-600 text-lg block">
+          <div className="inline-block px-3 py-1 border border-gray-400 bg-gray-50 text-xs text-gray-600">
             {formattedDate}
-          </time>
+          </div>
         </header>
 
         <PostContent content={contentHtml} />

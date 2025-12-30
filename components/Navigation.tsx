@@ -5,9 +5,9 @@ export default function Navigation() {
     <nav className="mb-8 pt-8">
       <Link
         href="/"
-        className="text-notebook-margin hover:text-red-600 transition-colors text-lg"
+        className="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center gap-1"
       >
-        ← Back to Table of Contents
+        ← Back
       </Link>
     </nav>
   );

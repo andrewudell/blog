@@ -6,6 +6,7 @@ export const metadata = {
   description: 'About Andrew Udell',
 };
 
+
 export default function AboutPage() {
   return (
     <>

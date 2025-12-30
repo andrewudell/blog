@@ -20,7 +20,7 @@ export async function GET() {
           Authorization: `Bearer ${GITHUB_TOKEN}`,
           Accept: 'application/vnd.github.v3+json',
         },
-        next: { revalidate: 60 }, // Cache for 60 seconds
+        cache: 'no-store', // Always fetch fresh data
       }
     );
 
@@ -31,13 +31,19 @@ export async function GET() {
     const issues = await response.json();
 
     // Transform issues into guestbook entries
-    const entries = issues.map((issue: any) => ({
-      id: issue.number,
-      name: issue.user.login,
-      message: issue.body,
-      date: new Date(issue.created_at).toISOString().split('T')[0],
-      avatar: issue.user.avatar_url,
-    }));
+    const entries = issues.map((issue: any) => {
+      // Parse name from title "Guestbook entry from NAME"
+      const nameMatch = issue.title.match(/Guestbook entry from (.+)/);
+      const name = nameMatch ? nameMatch[1] : issue.user.login;
+
+      return {
+        id: issue.number,
+        name: name,
+        message: issue.body,
+        date: new Date(issue.created_at).toISOString().split('T')[0],
+        avatar: issue.user.avatar_url,
+      };
+    });
 
     return NextResponse.json({ entries });
   } catch (error) {

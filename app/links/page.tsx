@@ -9,11 +9,10 @@ export const metadata = {
 
 export default function LinksPage() {
   const links = [
-    { name: 'Twitter', url: 'https://twitter.com', icon: '🐦' },
-    { name: 'GitHub', url: 'https://github.com', icon: '💻' },
-    { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' },
-    { name: 'Email', url: 'mailto:hello@example.com', icon: '📧' },
-    { name: 'RSS Feed', url: '/rss.xml', icon: '📡' },
+    { name: 'Twitter', url: 'https://x.com/andrewudell', icon: '🐦' },
+    { name: 'GitHub', url: 'https://github.com/andrewudell', icon: '💻' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/andrewudell/', icon: '💼' },
+    { name: 'Email', url: 'mailto:andrewkudell@gmail.com', icon: '📧' },
   ];
 
   return (

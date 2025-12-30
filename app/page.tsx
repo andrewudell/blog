@@ -33,20 +33,10 @@ export default function Home() {
           label="Projects"
         />
         <HyperCardIcon
-          href="/links"
-          iconType="links"
-          label="Links"
-        />
-        <HyperCardIcon
           href="/guestbook"
           iconType="guestbook"
           label="Guestbook"
         />
-      </div>
-
-      {/* Footer text */}
-      <div className="mt-12 text-center text-xs text-gray-600">
-        All Tools are ON
       </div>
     </main>
   );

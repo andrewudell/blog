@@ -16,13 +16,11 @@ export default function AboutPage() {
         <HyperCardField className="mb-6">
           <h2 className="text-xl font-bold mb-3">Andrew Udell</h2>
           <p className="mb-3 leading-relaxed">
-            Welcome to my personal HyperCard stack! I'm a developer, designer,
-            and technology enthusiast who loves building things for the web.
+            Currently: COO at Parabola.
+            Past: Investing at Thrive Capital, Product and Growth at Dropbox, and Computational Social Science at Williams. 
           </p>
           <p className="leading-relaxed">
-            I write about technology, design, and things I'm learning along the way.
-            This site is built as a tribute to HyperCard, the revolutionary software
-            that inspired a generation of creators.
+            This blog is primarily motivated by having fun playing with Claude/LLMs, but I do want to start writing more about everything I've learned running a startup!
           </p>
         </HyperCardField>
 

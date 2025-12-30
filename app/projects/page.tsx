@@ -15,7 +15,7 @@ export default function ProjectsPage() {
     },
     {
       name: 'Project Two',
-      description: 'Description of another cool project you\'ve worked on.',
+      description: 'Description of another cool project you&apos;ve worked on.',
       link: '#',
     },
     {

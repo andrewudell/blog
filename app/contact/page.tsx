@@ -40,7 +40,7 @@ export default function ContactPage() {
             <div className="flex items-center gap-3">
               <span className="font-bold text-sm w-20">Linkedin:</span>
               <HyperCardButton href="https://www.linkedin.com/in/andrewudell/">
-                Connect
+                /in/andrewudell/
               </HyperCardButton>
             </div>
           </div>

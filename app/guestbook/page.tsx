@@ -58,7 +58,7 @@ export default function GuestbookPage() {
       } else {
         setError(data.error || 'Failed to add entry');
       }
-    } catch (err) {
+    } catch {
       setError('Failed to add entry. Please try again.');
     } finally {
       setSubmitting(false);

@@ -83,7 +83,7 @@ export default function GuestbookPage() {
         <HyperCardField className="mb-6">
           <h2 className="text-lg font-bold mb-2">Sign My Guestbook!</h2>
           <p className="text-sm mb-4 leading-relaxed">
-            Leave a message in my guestbook. It&apos;s like the old days of the web!
+            Leave a message in my guestbook!
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">

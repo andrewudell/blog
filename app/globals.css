@@ -4,7 +4,7 @@
 
 :root {
   /* HyperCard Color Palette */
-  --hc-desktop: #C0C0C0;
+  --hc-desktop: rgb(138, 156, 221);
   --hc-card-bg: #FFFFFF;
   --hc-field-bg: #FAFAFA;
   --hc-button-bg: #DDDDDD;
@@ -106,7 +106,7 @@ body {
 /* Bottom navigation bar */
 .hypercard-navbar {
   border-top: 2px solid var(--hc-border);
-  background: var(--hc-desktop);
+  background: #C0C0C0;
   padding: 8px;
   display: flex;
   align-items: center;

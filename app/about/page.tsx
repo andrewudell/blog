@@ -23,16 +23,6 @@ export default function AboutPage() {
             This blog is primarily motivated by having fun playing with Claude/LLMs, but I do want to start writing more about everything I've learned running a startup!
           </p>
         </HyperCardField>
-
-        <HyperCardField>
-          <h3 className="text-lg font-bold mb-2">Interests</h3>
-          <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>Web Development</li>
-            <li>User Interface Design</li>
-            <li>Retro Computing</li>
-            <li>Open Source Software</li>
-          </ul>
-        </HyperCardField>
       </main>
     </>
   );

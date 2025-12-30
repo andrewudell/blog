@@ -23,6 +23,11 @@ export default function Home() {
           label="Writing"
         />
         <HyperCardIcon
+          href="/investments"
+          iconType="investments"
+          label="Angel Investments"
+        />
+        <HyperCardIcon
           href="/contact"
           iconType="contact"
           label="Contact"

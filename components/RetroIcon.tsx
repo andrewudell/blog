@@ -120,6 +120,27 @@ export default function RetroIcon({ type }: { type: string }) {
           </div>
         );
 
+      case 'investments':
+        // Stack of coins
+        return (
+          <div className="relative w-full h-full flex items-center justify-center">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              {/* Bottom coin */}
+              <ellipse cx="24" cy="34" rx="10" ry="4" fill="white" stroke="black" strokeWidth="2"/>
+              <ellipse cx="24" cy="34" rx="7" ry="2.5" fill="white" stroke="black" strokeWidth="1"/>
+              {/* Middle coin */}
+              <ellipse cx="24" cy="28" rx="10" ry="4" fill="white" stroke="black" strokeWidth="2"/>
+              <ellipse cx="24" cy="28" rx="7" ry="2.5" fill="white" stroke="black" strokeWidth="1"/>
+              {/* Top coin */}
+              <ellipse cx="24" cy="22" rx="10" ry="4" fill="white" stroke="black" strokeWidth="2"/>
+              <ellipse cx="24" cy="22" rx="7" ry="2.5" fill="white" stroke="black" strokeWidth="1"/>
+              {/* Dollar sign on top coin */}
+              <line x1="24" y1="19" x2="24" y2="25" stroke="black" strokeWidth="2"/>
+              <path d="M22 20 L26 20 M22 22 L26 22 M22 24 L26 24" stroke="black" strokeWidth="1"/>
+            </svg>
+          </div>
+        );
+
       default:
         return null;
     }

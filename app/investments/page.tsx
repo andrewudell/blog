@@ -9,7 +9,7 @@ export const metadata = {
 export default function InvestmentsPage() {
   const investments = [
     {
-      company: 'The Browser Company (acq'd)',
+      company: 'The Browser Company (acq\'d)',
       description: 'New type of browser. Josh Miller was my boss at Thrive and just a true genius at all things product and storytelling. Backed by Thrive, Pace Capital, and more.',
       year: '2021',
     },

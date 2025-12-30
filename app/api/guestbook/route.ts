@@ -3,6 +3,17 @@ import { NextRequest, NextResponse } from 'next/server';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO; // format: "username/repo"
 
+interface GitHubIssue {
+  number: number;
+  title: string;
+  body: string;
+  created_at: string;
+  user: {
+    login: string;
+    avatar_url: string;
+  };
+}
+
 export async function GET() {
   try {
     if (!GITHUB_TOKEN || !GITHUB_REPO) {
@@ -31,7 +42,7 @@ export async function GET() {
     const issues = await response.json();
 
     // Transform issues into guestbook entries
-    const entries = issues.map((issue: any) => {
+    const entries = issues.map((issue: GitHubIssue) => {
       // Parse name from title "Guestbook entry from NAME"
       const nameMatch = issue.title.match(/Guestbook entry from (.+)/);
       const name = nameMatch ? nameMatch[1] : issue.user.login;

@@ -9,11 +9,20 @@ export const metadata = {
 export default function InvestmentsPage() {
   const investments = [
     {
-      company: 'Company Name',
-      description: 'Brief description of what they do',
+      company: 'The Browser Company (acq'd)',
+      description: 'New type of browser. Josh Miller was my boss at Thrive and just a true genius at all things product and storytelling. Backed by Thrive, Pace Capital, and more.',
+      year: '2021',
+    },
+    {
+      company: 'Comulate',
+      description: 'Revenue automation for insurance brokers. Jordan is a longtime friend and absolute beast. Backed by Bond and Spark.',
+      year: '2022',
+    },
+    {
+      company: 'Span',
+      description: 'Dev intelligence platform. J Zac Stein is a mentor/friend and would never bet against him. Backed by Alt Capital, Craft, BoxGroup.',
       year: '2024',
     },
-    // Add more investments here
   ];
 
   return (
@@ -24,7 +33,7 @@ export default function InvestmentsPage() {
 
         <HyperCardField className="mb-6">
           <p className="leading-relaxed text-sm">
-            Companies I&apos;ve invested in and advise.
+            Companies I&apos;ve invested in.
           </p>
         </HyperCardField>
 

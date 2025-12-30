@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import DesktopIcon from './DesktopIcon';
 
 export default function HyperCardStack({
@@ -143,9 +144,9 @@ export default function HyperCardStack({
           <div className="hypercard-nav-arrow" onClick={handlePrevious}>◀</div>
           <div className="hypercard-nav-arrow" onClick={handleNext}>▶</div>
           <div className="flex-1 flex gap-1 ml-2">
-            <a href="/" className={`hypercard-nav-tab ${isHome ? 'active' : ''}`}>
+            <Link href="/" className={`hypercard-nav-tab ${isHome ? 'active' : ''}`}>
               Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

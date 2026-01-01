@@ -18,6 +18,7 @@ export default function HyperCardStack({
   const [windowPos, setWindowPos] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPositioned, setIsPositioned] = useState(false);
   const dragRef = React.useRef({ startX: 0, startY: 0 });
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function HyperCardStack({
       y: mobile ? window.innerHeight / 2 : window.innerHeight / 2
     });
     setIsMobile(mobile);
+    setIsPositioned(true);
 
     // Update on resize
     const handleResize = () => {
@@ -139,6 +141,8 @@ export default function HyperCardStack({
           top: `${windowPos.y}px`,
           transform: 'translate(-50%, -50%)',
           cursor: isDragging ? 'grabbing' : 'default',
+          opacity: isPositioned ? 1 : 0,
+          transition: isPositioned ? 'none' : 'opacity 0s',
         }}
       >
         {/* Title Bar - Drag handle on desktop only */}

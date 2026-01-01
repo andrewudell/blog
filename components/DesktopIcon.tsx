@@ -19,14 +19,13 @@ export default function DesktopIcon({
   const [position, setPosition] = useState({ x: initialX, y: initialY });
   const [isDragging, setIsDragging] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
-  const hasBeenMounted = useRef(false);
+  const userHasDragged = useRef(false);
   const dragRef = useRef({ startX: 0, startY: 0 });
 
-  // Only set initial position on first mount
+  // Update position when props change, unless user has manually dragged it
   useEffect(() => {
-    if (!hasBeenMounted.current) {
+    if (!userHasDragged.current) {
       setPosition({ x: initialX, y: initialY });
-      hasBeenMounted.current = true;
     }
   }, [initialX, initialY]);
 
@@ -93,6 +92,7 @@ export default function DesktopIcon({
 
     const handleGlobalMouseMove = (e: MouseEvent) => {
       setHasDragged(true);
+      userHasDragged.current = true; // Mark that user has manually positioned this icon
       setPosition({
         x: e.clientX - dragRef.current.startX,
         y: e.clientY - dragRef.current.startY,
@@ -142,7 +142,7 @@ export default function DesktopIcon({
       <div className="w-12 h-12">
         {renderIcon()}
       </div>
-      <div className="text-xs text-black bg-white px-1 border border-black text-center w-[80px]">
+      <div className="text-xs text-black bg-white px-1 border border-black text-center w-[90px] break-words leading-tight">
         {label}
       </div>
     </div>

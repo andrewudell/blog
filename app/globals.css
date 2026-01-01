@@ -39,12 +39,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--hc-desktop);
-  /* Disable font smoothing for bitmap appearance */
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: unset;
-  text-rendering: optimizeSpeed;
+  /* Enable font smoothing for better legibility */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   /* Slightly bolder for better readability */
-  font-weight: 500;
+  font-weight: 550;
 }
 
 /* HyperCard Utility Classes */

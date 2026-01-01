@@ -5,6 +5,9 @@ import HyperCardStack from "@/components/HyperCardStack";
 export const metadata: Metadata = {
   title: "Andrew Udell",
   description: "Thoughts, ideas, and things I'm learning",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

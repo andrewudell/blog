@@ -9,7 +9,7 @@ export const metadata = {
 export default function InvestmentsPage() {
   const investments = [
     {
-      company: 'The Browser Company (acq\'d)',
+      company: 'The Browser Company (acq\'d by Atlassian)',
       description: 'New type of browser. Josh Miller was my boss at Thrive and just a true genius at all things product and storytelling. Backed by Thrive, Pace Capital, and more.',
       year: '2021',
     },
@@ -22,6 +22,11 @@ export default function InvestmentsPage() {
       company: 'Span',
       description: 'Dev intelligence platform. J Zac Stein is a mentor/friend and would never bet against him. Backed by Alt Capital, Craft, BoxGroup.',
       year: '2024',
+    },
+    {
+      company: 'Practica (acq\'d by BetterUp)',
+      description: 'Marketplace for coaches. Founded by my dear friend, Andy Scheff.',
+      year: '2021',
     },
   ];
 

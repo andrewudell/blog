@@ -12,21 +12,25 @@ export default function InvestmentsPage() {
       company: 'The Browser Company (acq\'d by Atlassian)',
       description: 'New type of browser. Josh Miller was my boss at Thrive and just a true genius at all things product and storytelling. Backed by Thrive, Pace Capital, and more.',
       year: '2021',
+      url: 'https://www.thebrowser.company',
     },
     {
       company: 'Comulate',
       description: 'Revenue automation for insurance brokers. Jordan is a longtime friend and absolute beast. Backed by Bond and Spark.',
       year: '2022',
+      url: 'http://comulate.com',
     },
     {
       company: 'Span',
       description: 'Dev intelligence platform. J Zac Stein is a mentor/friend and would never bet against him. Backed by Alt Capital, Craft, BoxGroup.',
       year: '2024',
+      url: 'https://span.app',
     },
     {
       company: 'Practica (acq\'d by BetterUp)',
       description: 'Marketplace for coaches. Founded by my dear friend, Andy Scheff.',
       year: '2021',
+      url: 'https://practicahq.com',
     },
   ];
 
@@ -46,7 +50,16 @@ export default function InvestmentsPage() {
           {investments.map((investment, index) => (
             <HyperCardField key={index}>
               <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-lg">{investment.company}</h3>
+                <h3 className="font-bold text-lg">
+                  <a
+                    href={investment.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:opacity-70 transition-opacity"
+                  >
+                    {investment.company}
+                  </a>
+                </h3>
                 <span className="text-xs text-gray-600">{investment.year}</span>
               </div>
               <p className="text-sm leading-relaxed">{investment.description}</p>

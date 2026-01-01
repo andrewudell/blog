@@ -1,109 +1,61 @@
 ---
-title: "How I Built This Blog"
-date: "2025-12-23"
+title: "Building This Site"
+date: "2025-01-01"
 slug: "building-this-blog"
-excerpt: "A behind-the-scenes look at creating a composition notebook-styled blog with Next.js and Tailwind CSS."
+excerpt: "How I built a HyperCard-style website using Next.js."
 ---
 
-# How I Built This Blog
+# Building This Site
 
-Creating this notebook-styled blog was a fun project that combined my love for nostalgic design with modern web technologies. Here's how I did it.
+I rebuilt my site to look like HyperCard, the 1987 Mac software that was basically a stack of cards you could navigate through. Thick black borders, chunky buttons, diagonal line patterns on the desktop.
 
-## The Vision
+## Tech Stack
 
-I wanted a blog that felt personal and handwritten, like a real composition notebook. The key visual elements were:
+**Next.js 15** with the App Router. Modern framework, retro aesthetic.
 
-- Off-white paper background (#FFFEF0)
-- Horizontal ruled lines spaced 32px apart
-- A vertical red margin line on the left
-- Handwriting-style fonts for headers
-- Clean serif fonts for body text
+## Key Features
 
-## The Technical Stack
+### Desktop Pattern
 
-I chose **Next.js 15** with the App Router for several reasons:
-
-1. **Static Site Generation** - Perfect for blogs, with fast load times
-2. **File-based routing** - Clean and intuitive
-3. **Built-in optimization** - Images, fonts, and more
-4. **Vercel deployment** - Zero configuration needed
-
-For styling, I used **Tailwind CSS** combined with custom CSS for the notebook aesthetic. Markdown posts are processed with **remark** and **gray-matter**.
-
-## The Notebook Aesthetic
-
-The trickiest part was nailing the notebook look. Here's how I achieved it:
-
-### Ruled Lines
-
-Using CSS repeating gradients:
+CSS repeating gradient for those diagonal lines:
 
 ```css
-background: repeating-linear-gradient(
+background-image: repeating-linear-gradient(
+  45deg,
   transparent,
-  transparent 31px,
-  #D1E5F4 31px,
-  #D1E5F4 32px
+  transparent 1px,
+  rgba(0, 0, 0, 0.03) 1px,
+  rgba(0, 0, 0, 0.03) 2px
 );
 ```
 
-### Margin Line
+### Draggable UI
 
-A simple pseudo-element:
+The HyperCard window and desktop icons are draggable. Used React `useState` and global mouse event listeners. Click without dragging navigates, drag moves the icon.
+
+### 3D Buttons
+
+Layered CSS `box-shadow` for that beveled effect:
 
 ```css
-.notebook-page::before {
-  content: '';
-  position: fixed;
-  left: 60px;
-  width: 2px;
-  background: #E74C3C;
-}
+box-shadow:
+  inset 3px 3px 0px #FFFFFF,
+  inset 4px 4px 0px #F0F0F0,
+  inset -3px -3px 0px #888888,
+  inset -4px -4px 0px #666666,
+  2px 2px 0px #000000;
 ```
+
+### GitHub Issues Guestbook
+
+The guestbook uses GitHub Issues as the backend. Each entry creates an issue with the label "guestbook". Fetch them to display, close them to moderate.
 
 ### Typography
 
-I used **Caveat** for headings (that handwriting feel) and **Merriweather** for body text (readable serif). Both are loaded from Google Fonts.
+Courier New everywhere. Enabled font smoothing and set weight to 550 for readability.
 
-## Content Management
+## Mobile
 
-Posts are stored as markdown files in `content/posts/` with frontmatter:
+Desktop icons hidden on mobile. Window uses relative positioning with proper spacing instead of absolute centering.
 
-```yaml
----
-title: "Post Title"
-date: "2025-12-25"
-slug: "post-slug"
-excerpt: "Brief description"
----
-```
-
-The build process reads all markdown files, parses them, and generates static pages. Simple and effective.
-
-## Deployment
-
-Deployed to Vercel:
-
-1. Push code to GitHub
-2. Connect repository to Vercel
-3. Auto-deploy on every push
-
-That's it! No configuration needed—Vercel detects Next.js automatically.
-
-## What's Next?
-
-Possible future enhancements:
-
-- Tags and categories
-- Search functionality
-- RSS feed
-- Comments (maybe with Giscus)
-- Dark mode (dark notebook theme?)
-
-But for now, I'm keeping it simple. Just like a real notebook.
-
-## Conclusion
-
-This project reminded me that sometimes the best designs are inspired by the physical world. A composition notebook is a timeless design that translates beautifully to the web.
-
-If you're interested in building something similar, all you need is Next.js, some CSS creativity, and a love for nostalgic design.
+That's it. Modern tech, old-school look.

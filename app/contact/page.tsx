@@ -15,31 +15,31 @@ export default function ContactPage() {
         <h1 className="text-3xl font-bold mb-6">Contact</h1>
 
         <HyperCardField className="mb-6">
-          <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-sm w-20">Email:</span>
-              <HyperCardButton href="mailto:andrewkudell@gmail.com">
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <span className="font-bold text-sm sm:w-24">Email:</span>
+              <HyperCardButton href="mailto:andrewkudell@gmail.com" className="w-full sm:w-auto">
                 andrewkudell@gmail.com
               </HyperCardButton>
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-sm w-20">Twitter:</span>
-              <HyperCardButton href="https://x.com/andrewudell">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <span className="font-bold text-sm sm:w-24">Twitter:</span>
+              <HyperCardButton href="https://x.com/andrewudell" className="w-full sm:w-auto">
                 @andrewudell
               </HyperCardButton>
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-sm w-20">GitHub:</span>
-              <HyperCardButton href="https://github.com/andrewudell">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <span className="font-bold text-sm sm:w-24">GitHub:</span>
+              <HyperCardButton href="https://github.com/andrewudell" className="w-full sm:w-auto">
                 @andrewudell
               </HyperCardButton>
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-sm w-20">Linkedin:</span>
-              <HyperCardButton href="https://www.linkedin.com/in/andrewudell/">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <span className="font-bold text-sm sm:w-24">LinkedIn:</span>
+              <HyperCardButton href="https://www.linkedin.com/in/andrewudell/" className="w-full sm:w-auto">
                 /in/andrewudell/
               </HyperCardButton>
             </div>

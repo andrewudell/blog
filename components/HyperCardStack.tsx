@@ -19,9 +19,12 @@ export default function HyperCardStack({
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isPositioned, setIsPositioned] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const dragRef = React.useRef({ startX: 0, startY: 0 });
 
   useEffect(() => {
+    setMounted(true);
+
     // Calculate positions - icons flush to right edge (16px from edge)
     // Icon width is ~80px, so position at window.innerWidth - 96
     const rightEdgeX = window.innerWidth - 96;
@@ -32,8 +35,8 @@ export default function HyperCardStack({
     setBottomY(bottomEdgeY);
     // Center the window, accounting for viewport size
     setWindowPos({
-      x: mobile ? window.innerWidth / 2 : window.innerWidth / 2,
-      y: mobile ? window.innerHeight / 2 : window.innerHeight / 2
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
     });
     setIsMobile(mobile);
     setIsPositioned(true);
@@ -132,15 +135,15 @@ export default function HyperCardStack({
       <div
         className="hypercard-window flex flex-col select-none"
         style={{
-          width: isMobile ? 'calc(100vw - 2rem)' : '100%',
+          width: mounted && isMobile ? 'calc(100vw - 2rem)' : '100%',
           maxWidth: '48rem',
-          height: isMobile ? 'calc(100vh - 4rem)' : '600px',
-          maxHeight: isMobile ? 'calc(100vh - 4rem)' : '600px',
-          position: isMobile ? 'relative' : 'absolute',
-          left: isMobile ? 'auto' : `${windowPos.x}px`,
-          top: isMobile ? '1rem' : `${windowPos.y}px`,
-          transform: isMobile ? 'none' : 'translate(-50%, -50%)',
-          margin: isMobile ? '0 auto' : '0',
+          height: mounted && isMobile ? 'calc(100vh - 4rem)' : '600px',
+          maxHeight: mounted && isMobile ? 'calc(100vh - 4rem)' : '600px',
+          position: mounted && isMobile ? 'relative' : 'absolute',
+          left: mounted && isMobile ? 'auto' : `${windowPos.x}px`,
+          top: mounted && isMobile ? '1rem' : `${windowPos.y}px`,
+          transform: mounted && isMobile ? 'none' : 'translate(-50%, -50%)',
+          margin: mounted && isMobile ? '0 auto' : '0',
           cursor: isDragging ? 'grabbing' : 'default',
           opacity: isPositioned ? 1 : 0,
           transition: isPositioned ? 'none' : 'opacity 0s',
@@ -149,8 +152,8 @@ export default function HyperCardStack({
         {/* Title Bar - Drag handle on desktop only */}
         <div
           className="hypercard-titlebar flex-shrink-0"
-          onMouseDown={isMobile ? undefined : handleMouseDown}
-          style={{ cursor: isMobile ? 'default' : 'grab' }}
+          onMouseDown={mounted && isMobile ? undefined : handleMouseDown}
+          style={{ cursor: mounted && isMobile ? 'default' : 'grab' }}
         >
           <div className="hypercard-window-controls">
             <div className="hypercard-window-control"></div>

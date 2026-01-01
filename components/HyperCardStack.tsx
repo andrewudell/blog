@@ -17,6 +17,7 @@ export default function HyperCardStack({
   const [bottomY, setBottomY] = useState(700);
   const [windowPos, setWindowPos] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dragRef = React.useRef({ startX: 0, startY: 0 });
 
   useEffect(() => {
@@ -24,15 +25,27 @@ export default function HyperCardStack({
     // Icon width is ~80px, so position at window.innerWidth - 96
     const rightEdgeX = window.innerWidth - 96;
     const bottomEdgeY = window.innerHeight - 100;
+    const mobile = window.innerWidth < 768;
 
     setRightX(rightEdgeX);
     setBottomY(bottomEdgeY);
-    setWindowPos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+    // Center the window, accounting for viewport size
+    setWindowPos({
+      x: mobile ? window.innerWidth / 2 : window.innerWidth / 2,
+      y: mobile ? window.innerHeight / 2 : window.innerHeight / 2
+    });
+    setIsMobile(mobile);
 
     // Update on resize
     const handleResize = () => {
+      const mobile = window.innerWidth < 768;
       setRightX(window.innerWidth - 96);
       setBottomY(window.innerHeight - 100);
+      setIsMobile(mobile);
+      setWindowPos({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+      });
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -97,24 +110,30 @@ export default function HyperCardStack({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
-      {/* Desktop Icons - Now draggable! */}
-      <DesktopIcon type="disk" label="Macintosh HD" initialX={16} initialY={16} />
-      <DesktopIcon type="folder" label="Documents" initialX={16} initialY={100} />
-      <DesktopIcon type="folder" label="Projects" initialX={16} initialY={180} />
+      {/* Desktop Icons - Hidden on mobile, shown on md+ screens */}
+      <div className="hidden md:block">
+        {/* Left side icons - matching page order */}
+        <DesktopIcon type="folder" label="About" initialX={16} initialY={16} onClick={() => router.push('/about')} />
+        <DesktopIcon type="folder" label="Writing" initialX={16} initialY={100} onClick={() => router.push('/writing')} />
+        <DesktopIcon type="folder" label="Angel Investments" initialX={16} initialY={180} onClick={() => router.push('/investments')} />
 
-      {/* Right side icons */}
-      <DesktopIcon type="document" label="ReadMe.txt" initialX={rightX} initialY={16} />
-      <DesktopIcon type="document" label="Notes" initialX={rightX} initialY={100} />
-      <DesktopIcon type="folder" label="Apps" initialX={rightX} initialY={180} />
+        {/* Right side icons - continuing page order */}
+        <DesktopIcon type="document" label="Contact" initialX={rightX} initialY={16} onClick={() => router.push('/contact')} />
+        <DesktopIcon type="folder" label="Projects" initialX={rightX} initialY={100} onClick={() => router.push('/projects')} />
+        <DesktopIcon type="document" label="Guestbook" initialX={rightX} initialY={180} onClick={() => router.push('/guestbook')} />
 
-      {/* Trash at bottom right */}
-      <DesktopIcon type="trash" label="Trash" initialX={rightX} initialY={bottomY} />
+        {/* Trash at bottom right */}
+        <DesktopIcon type="trash" label="Trash" initialX={rightX} initialY={bottomY} />
+      </div>
 
-      {/* HyperCard Window - Now draggable! */}
+      {/* HyperCard Window - Responsive and centered */}
       <div
-        className="w-full max-w-3xl hypercard-window flex flex-col select-none"
+        className="hypercard-window flex flex-col select-none"
         style={{
-          height: '600px',
+          width: isMobile ? 'calc(100vw - 2rem)' : '100%',
+          maxWidth: '48rem',
+          height: isMobile ? 'calc(100vh - 2rem)' : '600px',
+          maxHeight: isMobile ? 'calc(100vh - 2rem)' : '600px',
           position: 'absolute',
           left: `${windowPos.x}px`,
           top: `${windowPos.y}px`,
@@ -122,11 +141,11 @@ export default function HyperCardStack({
           cursor: isDragging ? 'grabbing' : 'default',
         }}
       >
-        {/* Title Bar - Drag handle */}
+        {/* Title Bar - Drag handle on desktop only */}
         <div
           className="hypercard-titlebar flex-shrink-0"
-          onMouseDown={handleMouseDown}
-          style={{ cursor: 'grab' }}
+          onMouseDown={isMobile ? undefined : handleMouseDown}
+          style={{ cursor: isMobile ? 'default' : 'grab' }}
         >
           <div className="hypercard-window-controls">
             <div className="hypercard-window-control"></div>

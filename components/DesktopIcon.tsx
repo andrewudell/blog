@@ -7,23 +7,28 @@ export default function DesktopIcon({
   type,
   label,
   initialX = 0,
-  initialY = 0
+  initialY = 0,
+  onClick
 }: {
   type: 'folder' | 'document' | 'disk' | 'trash';
   label: string;
   initialX?: number;
   initialY?: number;
+  onClick?: () => void;
 }) {
   const [position, setPosition] = useState({ x: initialX, y: initialY });
   const [isDragging, setIsDragging] = useState(false);
+  const [hasDragged, setHasDragged] = useState(false);
+  const hasBeenMounted = useRef(false);
   const dragRef = useRef({ startX: 0, startY: 0 });
 
-  // Update position when initialX or initialY props change (unless user is dragging)
+  // Only set initial position on first mount
   useEffect(() => {
-    if (!isDragging) {
+    if (!hasBeenMounted.current) {
       setPosition({ x: initialX, y: initialY });
+      hasBeenMounted.current = true;
     }
-  }, [initialX, initialY, isDragging]);
+  }, [initialX, initialY]);
 
   const renderIcon = () => {
     switch (type) {
@@ -83,24 +88,44 @@ export default function DesktopIcon({
     }
   };
 
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      setHasDragged(true);
+      setPosition({
+        x: e.clientX - dragRef.current.startX,
+        y: e.clientY - dragRef.current.startY,
+      });
+    };
+
+    const handleGlobalMouseUp = () => {
+      // If we didn't drag, treat it as a click
+      if (!hasDragged && onClick) {
+        onClick();
+      }
+      setIsDragging(false);
+      setHasDragged(false);
+    };
+
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleGlobalMouseMove);
+      window.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, hasDragged, onClick]);
+
   const handleMouseDown = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent window dragging
+    e.preventDefault();
     setIsDragging(true);
+    setHasDragged(false);
     dragRef.current = {
       startX: e.clientX - position.x,
       startY: e.clientY - position.y,
     };
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    setPosition({
-      x: e.clientX - dragRef.current.startX,
-      y: e.clientY - dragRef.current.startY,
-    });
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
   };
 
   return (
@@ -113,9 +138,6 @@ export default function DesktopIcon({
         zIndex: isDragging ? 50 : 10,
       }}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
     >
       <div className="w-12 h-12">
         {renderIcon()}
